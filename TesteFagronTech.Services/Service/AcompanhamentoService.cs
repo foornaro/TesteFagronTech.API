@@ -49,7 +49,7 @@ namespace TesteFagronTech.Services.Service
         {
             ResultadosViewModel resultados = new ResultadosViewModel();
 
-            var response = new ResponseViewModel<ResultadosViewModel>() { Success = false , Content = resultados };
+            var response = new ResponseViewModel<ResultadosViewModel>() { Success = false, Content = resultados };
 
             try
             {
@@ -72,7 +72,7 @@ namespace TesteFagronTech.Services.Service
                         JogosDisputados = partidas.Count,
                         MaiorPontuacaoJogo = partidas.Max(x => x.QuantidadePontos),
                         MenorPontuacaoJogo = partidas.Min(x => x.QuantidadePontos),
-                        MediaPorJogo = partidas.Average(x => x.QuantidadePontos),
+                        MediaPorJogo = Math.Round(partidas.Average(x => x.QuantidadePontos), 2),
                         TotalDePontosMarcados = partidas.Sum(x => x.QuantidadePontos),
                         QuantidadeVezesRecorde = GetQuantidadeVezesRecorde(partidas)
                     };
@@ -97,7 +97,7 @@ namespace TesteFagronTech.Services.Service
         {
             //Ordena a lista por DataPartida
             partidas = partidas.OrderBy(x => x.DataPartida).ToList();
-            
+
             //Salva a primeira pontuação do jogador
             var maiorPontuacaoAnterior = partidas?.First().QuantidadePontos;
             var quantidadeVezesRecorde = 0;
