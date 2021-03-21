@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteFagronTech.Services", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteFagronTech.Controller", "TesteFagronTech.Controller\TesteFagronTech.Controller.csproj", "{B43FBF8A-3A7F-4418-BDC3-9C6896F2054B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteFagronTech.Tests", "TesteFagronTech.Tests\TesteFagronTech.Tests.csproj", "{D0E25F3A-6896-4A98-9CAA-AC8144A6975A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B43FBF8A-3A7F-4418-BDC3-9C6896F2054B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B43FBF8A-3A7F-4418-BDC3-9C6896F2054B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B43FBF8A-3A7F-4418-BDC3-9C6896F2054B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0E25F3A-6896-4A98-9CAA-AC8144A6975A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0E25F3A-6896-4A98-9CAA-AC8144A6975A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0E25F3A-6896-4A98-9CAA-AC8144A6975A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0E25F3A-6896-4A98-9CAA-AC8144A6975A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

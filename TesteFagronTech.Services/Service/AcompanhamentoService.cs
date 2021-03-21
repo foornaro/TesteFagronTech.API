@@ -23,11 +23,13 @@ namespace TesteFagronTech.Services.Service
             var response = new ResponseViewModel<bool>() { Success = false, Content = false };
             try
             {
-                if (pontosPartida.DataPartida == null)
+                //Valida se a data foi enviada
+                if (pontosPartida.DataPartida == default(DateTime))
                 {
                     response.Errors.Add("A data da partida não pode ser vazia");
                 }
 
+                //Caso não tenha nenhum erro, adiciona a partida ao banco
                 if (response.Errors?.Count == 0)
                 {
                     response.Content = _acompanhamentoRepository.Add(pontosPartida);
@@ -45,17 +47,22 @@ namespace TesteFagronTech.Services.Service
 
         public ResponseViewModel<ResultadosViewModel> VerResultados()
         {
-            var response = new ResponseViewModel<ResultadosViewModel>() { Success = false };
+            ResultadosViewModel resultados = new ResultadosViewModel();
+
+            var response = new ResponseViewModel<ResultadosViewModel>() { Success = false , Content = resultados };
+
             try
             {
+                //Busca todas as partidas
                 var partidas = _acompanhamentoRepository.GetAllAcompanhamentoPartidas();
-                ResultadosViewModel resultados = new ResultadosViewModel();
 
+                //Valida se existe alguma partida
                 if (partidas == null || partidas.Count == 0)
                 {
                     response.Errors.Add("Não encontramos nenhuma partida");
                 }
 
+                //Caso não tenha nenhum erro, faz os calculos
                 if (response.Errors?.Count == 0)
                 {
                     resultados = new ResultadosViewModel()
@@ -81,11 +88,21 @@ namespace TesteFagronTech.Services.Service
             return response;
         }
 
+        /// <summary>
+        /// Calcula quantas vezes o jogador bateu o proprio record
+        /// </summary>
+        /// <param name="partidas"></param> Lista de resultados do jogador
+        /// <returns></returns>
         private int GetQuantidadeVezesRecorde(List<AcompanhamentoPartidaModel> partidas)
         {
+            //Ordena a lista por DataPartida
+            partidas = partidas.OrderBy(x => x.DataPartida).ToList();
+            
+            //Salva a primeira pontuação do jogador
             var maiorPontuacaoAnterior = partidas?.First().QuantidadePontos;
             var quantidadeVezesRecorde = 0;
 
+            //Verifica todas as partidas e verifica cada vez que o recorde foi batido
             foreach (var partida in partidas)
             {
                 if (partida.QuantidadePontos > maiorPontuacaoAnterior)
